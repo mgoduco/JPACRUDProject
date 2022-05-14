@@ -10,6 +10,9 @@
  --%></head>
 <body>
 
+	<a href="createGpuPage.do">Add A Graphics Card</a>
+
+
 	<main class="container-fluid">
 	<form action="getGpu.do" method="GET">
 		Graphics Card ID: <input class="form-control" type="text" name="gpuId" /> 

@@ -29,17 +29,13 @@ public class GraphicsCardDAOJpaImpl implements GraphicsCardDAO{
 	}
 
 	@Override
-	public GraphicsCard create(GraphicsCard gpu) {
-		// start the transaction
-		em.getTransaction().begin();
+	public GraphicsCard createGpu(GraphicsCard gpu) {
 		System.out.println("Before the persist: " + gpu);
 		// write the GraphicsCard to the database
 		em.persist(gpu);
 		System.out.println("After the persist: " + gpu);
 		// update the "local" GraphicsCard object
 		em.flush();
-		// commit the changes (actually perform the operation)
-		em.getTransaction().commit();
 		return gpu;
 	}
 
@@ -49,10 +45,8 @@ public class GraphicsCardDAOJpaImpl implements GraphicsCardDAO{
 		// retrieve a "managed" GraphicsCard entity
 		GraphicsCard managedGpu = em.find(GraphicsCard.class, id);
 		if (managedGpu != null) {
-			em.getTransaction().begin();
 			managedGpu.setName(updatedGpu.getName());
 			// TODO FINISH SETS
-			em.getTransaction().commit();
 			// actually make changes
 		}
 		return managedGpu;

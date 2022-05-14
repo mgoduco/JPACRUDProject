@@ -1,7 +1,5 @@
 package com.skilldistillery.computer.entities;
 
-import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,31 +10,32 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "graphics_card")
 public class GraphicsCard {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String name;
-	
+
 	@Column(name = "release_date")
-	private LocalDate releaseDate;
-	
-	private String Memory;
-	
+	private String releaseDate;
+
+	private String memory;
+
 	@Column(name = "gpu_clock")
 	private Integer gpuClock;
-	
+
 	@Column(name = "memory_clock")
 	private Integer memoryClock;
 
-	private Double Price;
-	
+	private Double price;
+
 	@Column(name = "average_fps")
 	private Double averageFps;
-	
-	//	Methods
-	public GraphicsCard () {}
+
+	// Methods
+	public GraphicsCard() {
+	}
 
 	public int getId() {
 		return id;
@@ -54,20 +53,20 @@ public class GraphicsCard {
 		this.name = name;
 	}
 
-	public LocalDate getReleaseDate() {
+	public String getReleaseDate() {
 		return releaseDate;
 	}
 
-	public void setReleaseDate(LocalDate releaseDate) {
+	public void setReleaseDate(String releaseDate) {
 		this.releaseDate = releaseDate;
 	}
 
 	public String getMemory() {
-		return Memory;
+		return memory;
 	}
 
 	public void setMemory(String memory) {
-		Memory = memory;
+		this.memory = memory;
 	}
 
 	public Integer getGpuClock() {
@@ -87,11 +86,11 @@ public class GraphicsCard {
 	}
 
 	public Double getPrice() {
-		return Price;
+		return price;
 	}
 
 	public void setPrice(Double price) {
-		Price = price;
+		this.price = price;
 	}
 
 	public Double getAverageFps() {
@@ -104,8 +103,8 @@ public class GraphicsCard {
 
 	@Override
 	public String toString() {
-		return "GraphicsCard [id=" + id + ", name=" + name + ", releaseDate=" + releaseDate + ", Memory=" + Memory
-				+ ", gpuClock=" + gpuClock + ", memoryClock=" + memoryClock + ", Price=" + Price + ", averageFps="
+		return "GraphicsCard [id=" + id + ", name=" + name + ", releaseDate=" + releaseDate + ", memory=" + memory
+				+ ", gpuClock=" + gpuClock + ", memoryClock=" + memoryClock + ", price=" + price + ", averageFps="
 				+ averageFps + "]";
 	}
 	
