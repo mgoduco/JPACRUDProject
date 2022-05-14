@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Deleted</title>
+<title>ERROR</title>
 </head>
 <body>
-	<h1>Deleted GPU</h1>
+	<h1>SOMETHING WENT WRONG</h1>
 	<a href="index.do">Home</a>
 </body>
 </html>

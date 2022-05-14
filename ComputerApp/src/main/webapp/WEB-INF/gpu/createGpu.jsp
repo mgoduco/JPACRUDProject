@@ -38,5 +38,6 @@
 
 		<input type="submit" value="Create New GPU">
 	</form>
+	<a href="index.do">Home</a>
 </body>
 </html>

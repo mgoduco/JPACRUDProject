@@ -22,7 +22,8 @@ public class GraphicsCardController {
 		model.addAttribute("gpu", gpuDao.findAll());
 		return "index"; // using a ViewResolver.
 	}
-	@RequestMapping(path = "createGpuPage.do" )
+
+	@RequestMapping(path = "createGpuPage.do")
 	public String createPage() {
 		return "gpu/createGpu";
 	}
@@ -33,17 +34,49 @@ public class GraphicsCardController {
 		redir.addFlashAttribute("gpu", newGpu);
 		return "redirect:getNewGpu.do";
 	}
+
+	@RequestMapping(path = "updateGpuPage.do")
+	public String updatePage(@RequestParam int id, Model model) {
+		GraphicsCard updateGpu = gpuDao.findById(id);
+		model.addAttribute("gpu", updateGpu);
+		return "gpu/updateGpu";
+	}
+
+	@RequestMapping(path = "updateGpu.do", method = RequestMethod.POST)
+	public String updateGpu(@RequestParam Integer id, GraphicsCard gpu, Model model) {
+
+		GraphicsCard updatedGpu = gpuDao.updateGpu(id, gpu);
+
+		System.out.println("updateGpu method attempted");
+
+		model.addAttribute("gpu", updatedGpu);
+		return "gpu/showGpu";
+	}
+
+	@RequestMapping(path = "deleteGpu.do", params = "id")
+	public String deleteGpu(int id, RedirectAttributes redir) {
+		boolean deleteGpu = gpuDao.deleteGpu(id);
+		redir.addFlashAttribute("deletedGpu", deleteGpu);
+		return "gpu/deleteGpu";
+	}
+
 	@RequestMapping(path = "getGpu.do")
 	public String showGpu(@RequestParam int gpuId, Model model) {
 		GraphicsCard gpu = gpuDao.findById(gpuId);
 		model.addAttribute("gpu", gpu);
-		return "gpu/show";
+		return "gpu/showGpu";
 	}
+
 	@RequestMapping(path = "getNewGpu.do")
 	public String showNewGpu() {
-		return "gpu/show";
+		return "gpu/showGpu";
 	}
-	
-}
 
-	
+	// getUpdatedGpu.do
+
+	@RequestMapping(path = "getUpdatedGpu.do")
+	public String showUpdatedGpu() {
+		return "gpu/showGpu";
+	}
+
+}

@@ -30,6 +30,15 @@
 			</tr>
 		</table>
 	</div>
+	<form action="deleteGpu.do" method="post">
+	<input type="submit" value="Delete"> 
+	<input type="hidden" name="id" value="${gpu.id}">
+	</form><br>
+	<form action="updateGpuPage.do" method="get">
+	<input type="submit" value="Edit"> 
+	<input type="hidden" name="id" value="${gpu.id}">
+	</form>
+	<a href="index.do">Home</a>
 
 </body>
 </html>

@@ -10,13 +10,15 @@
  --%></head>
 <body>
 
-	<a href="createGpuPage.do">Add A Graphics Card</a>
-
-
 	<main class="container-fluid">
+	<a href="createGpuPage.do">Add A Graphics Card</a> <br><br>
 	<form action="getGpu.do" method="GET">
 		Graphics Card ID: <input class="form-control" type="text" name="gpuId" /> 
-		<input class="btn btn-primary" type="submit" value="Show GPU" />
+		<input class="btn btn-primary" type="submit" value="Show Graphics Card" />
+	</form><br>
+	<form action="updateGpuPage.do" method="GET">
+		Graphics Card ID: <input class="form-control" type="text" name="id" /> 
+		<input class="btn btn-primary" type="submit" value="Update Graphics Card by ID" />
 	</form>
 	
 <table>
@@ -30,11 +32,11 @@
  			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="graphics_card" items="${gpu}">
+			<c:forEach var="gpu" items="${gpu}">
 				<tr>
-					<td>${graphics_card.id}</td>
-					<td><a href="getGpu.do?gpuId=${graphics_card.id}">${graphics_card.name}</a></td>
-					<td>${graphics_card.releaseDate}</td> 
+					<td>${gpu.id}</td>
+					<td><a href="getGpu.do?gpuId=${gpu.id}">${gpu.name}</a></td>
+					<td>${gpu.releaseDate}</td> 
 				</tr>
 			</c:forEach>
 

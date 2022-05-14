@@ -10,9 +10,9 @@ public interface GraphicsCardDAO {
 		
 		public List<GraphicsCard> findAll(); 
 
-		public GraphicsCard createGpu(GraphicsCard graphicscard);
+		public GraphicsCard createGpu(GraphicsCard gpu);
 		
-		public GraphicsCard updateGpu(int id, GraphicsCard updatedGpu);
+		public GraphicsCard updateGpu(int id,GraphicsCard gpu);
 		
-		public boolean destroy(int id);
+		public boolean deleteGpu(int id);
 }

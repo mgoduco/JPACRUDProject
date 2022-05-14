@@ -12,16 +12,16 @@ import com.skilldistillery.computer.entities.GraphicsCard;
 
 @Service
 @Transactional
-public class GraphicsCardDAOJpaImpl implements GraphicsCardDAO{
-	
+public class GraphicsCardDAOJpaImpl implements GraphicsCardDAO {
+
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@Override
 	public GraphicsCard findById(int gpuId) {
 		return em.find(GraphicsCard.class, gpuId);
 	}
-	
+
 	@Override
 	public List<GraphicsCard> findAll() {
 		String jpql = "SELECT g FROM GraphicsCard g";
@@ -31,38 +31,37 @@ public class GraphicsCardDAOJpaImpl implements GraphicsCardDAO{
 	@Override
 	public GraphicsCard createGpu(GraphicsCard gpu) {
 		System.out.println("Before the persist: " + gpu);
-		// write the GraphicsCard to the database
 		em.persist(gpu);
 		System.out.println("After the persist: " + gpu);
-		// update the "local" GraphicsCard object
 		em.flush();
 		return gpu;
 	}
 
 	@Override
-	public GraphicsCard updateGpu(int id, GraphicsCard updatedGpu) {
-		// open a transaction
-		// retrieve a "managed" GraphicsCard entity
+	public GraphicsCard updateGpu(int id,GraphicsCard gpu) {
 		GraphicsCard managedGpu = em.find(GraphicsCard.class, id);
 		if (managedGpu != null) {
-			managedGpu.setName(updatedGpu.getName());
-			// TODO FINISH SETS
-			// actually make changes
+			managedGpu.setName(gpu.getName());
+			managedGpu.setReleaseDate(gpu.getReleaseDate());
+			managedGpu.setMemory(gpu.getMemory());
+			managedGpu.setGpuClock(gpu.getGpuClock());
+			managedGpu.setMemoryClock(gpu.getMemoryClock());
+			managedGpu.setPrice(gpu.getPrice());
+			managedGpu.setAverageFps(gpu.getAverageFps());
+			em.flush();
 		}
 		return managedGpu;
 	}
 
 	@Override
-	public boolean destroy(int id) {
-		boolean destroyed = false;
+	public boolean deleteGpu(int id) {
+		boolean deleted = false;
 		GraphicsCard gpu = em.find(GraphicsCard.class, id);
 		if (gpu != null) {
-			em.getTransaction().begin();
-			em.remove(gpu); // performs the delete on the managed entity
-			destroyed = !em.contains(gpu);
-			em.getTransaction().commit();
+			em.remove(gpu);
+			deleted = !em.contains(gpu);
 			System.out.println("GraphicsCard at: " + id + " DESTROYED");
 		}
-		return destroyed;
+		return deleted;
 	}
 }
