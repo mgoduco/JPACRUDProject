@@ -38,17 +38,16 @@ public class GraphicsCardController {
 	@RequestMapping(path = "updateGpuPage.do")
 	public String updatePage(@RequestParam int id, Model model) {
 		GraphicsCard updateGpu = gpuDao.findById(id);
+		if (updateGpu == null) {
+			return "gpu/error";
+		}
 		model.addAttribute("gpu", updateGpu);
 		return "gpu/updateGpu";
 	}
 
 	@RequestMapping(path = "updateGpu.do", method = RequestMethod.POST)
-	public String updateGpu(@RequestParam Integer id, GraphicsCard gpu, Model model) {
-
+	public String updateGpu(@RequestParam int id, GraphicsCard gpu, Model model) {
 		GraphicsCard updatedGpu = gpuDao.updateGpu(id, gpu);
-
-		System.out.println("updateGpu method attempted");
-
 		model.addAttribute("gpu", updatedGpu);
 		return "gpu/showGpu";
 	}
@@ -63,6 +62,9 @@ public class GraphicsCardController {
 	@RequestMapping(path = "getGpu.do")
 	public String showGpu(@RequestParam int gpuId, Model model) {
 		GraphicsCard gpu = gpuDao.findById(gpuId);
+		if (gpu == null) {
+			return "gpu/error";
+		}
 		model.addAttribute("gpu", gpu);
 		return "gpu/showGpu";
 	}
@@ -71,8 +73,6 @@ public class GraphicsCardController {
 	public String showNewGpu() {
 		return "gpu/showGpu";
 	}
-
-	// getUpdatedGpu.do
 
 	@RequestMapping(path = "getUpdatedGpu.do")
 	public String showUpdatedGpu() {

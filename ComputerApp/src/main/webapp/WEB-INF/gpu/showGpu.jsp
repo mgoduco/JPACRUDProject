@@ -37,7 +37,7 @@
 	<form action="updateGpuPage.do" method="get">
 	<input type="submit" value="Edit"> 
 	<input type="hidden" name="id" value="${gpu.id}">
-	</form>
+	</form><br>
 	<a href="index.do">Home</a>
 
 </body>
